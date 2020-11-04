@@ -17,7 +17,7 @@ A0 = b0*b0;
 X = 0.7*c1/clr*sqrt((1+c1)/(1+0.77*clr));
 % 润湿周边
 WettedPerimeter = [4*b0; sqrt(8*pi*A0); sqrt(32*A0); 4*(0.2+0.4)];
-% 喷嘴特征长度（两倍水力半径）
+% 喷嘴特征长度R0（=1/2当量直径=两倍水力半径）
 HydraulicRadius = A0./WettedPerimeter;
 R0 = HydraulicRadius*2;
 str_nozzle = {'0.4x0.4 square', 'eq.Area 2 circular', ...
