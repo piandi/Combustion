@@ -1,28 +1,32 @@
-%% è¯¾åä½œä¸š3-17
+%% ¿Îºó×÷Òµ3-17
 %
 % by Dr. Guan, Guoqiang @ SCUT on 2019-10-23
 %
-%% åˆå§‹åŒ–
+%% ³õÊ¼»¯
 clear;
-% å–·å˜´å‡ºå£ç‡ƒæ–™æµ“åº¦å’Œç‡ƒå°½æµ“åº¦
+% Åç×ì³ö¿ÚÈ¼ÁÏÅ¨¶ÈºÍÈ¼¾¡Å¨¶È
 c1 = 0.62; clr = 0.2;
-% æ¹æµå‚æ•°
+% ÍÄÁ÷²ÎÊı
 a = 0.08;
-% åŸæ–¹å‹å–·å˜´å°ºå¯¸
+% Ô­·½ĞÍÅç×ì³ß´ç£¨±ß³¤£©
 b0 = 0.4;
-%% è®¡ç®—ç†è®ºç‡ƒå°½ç«ç„°é•¿åº¦ï¼Œå³å¼(3-97)
-% æ— å› æ¬¡ç†è®ºç‡ƒå°½ç«ç„°é•¿åº¦X = x*a/R0
-X = 0.7*c1/clr*sqrt((1+c1)/(1+0.77*clr));
-% åŸæ–¹å‹å–·å˜´æˆªé¢ç§¯
+% Ô­·½ĞÍÅç×ì½ØÃæ»ı
 A0 = b0*b0;
-% å–·å˜´ç‰¹å¾é•¿åº¦
-L = [b0; sqrt(A0/pi/2); sqrt(A0/2); 0.2];
-str_nozzle = {'a 0.4x0.4 square', 'eq.Area 2 circular', ...
-              'eq.Area 2 square', 'two 0.2x0.4 square'};
-% ç†è®ºç‡ƒå°½ç«ç„°é•¿åº¦x
-x = X*L./a;
-%% è¾“å‡º
+%% ¼ÆËãÀíÂÛÈ¼¾¡»ğÑæ³¤¶È£¬¼´Ê½(3-97)
+% ÎŞÒò´ÎÀíÂÛÈ¼¾¡»ğÑæ³¤¶ÈX = x*a/R0
+X = 0.7*c1/clr*sqrt((1+c1)/(1+0.77*clr));
+% ÈóÊªÖÜ±ß
+WettedPerimeter = [4*b0; sqrt(8*pi*A0); sqrt(32*A0); 4*(0.2+0.4)];
+% Åç×ìÌØÕ÷³¤¶ÈR0£¨=1/2µ±Á¿Ö±¾¶=Á½±¶Ë®Á¦°ë¾¶£©
+HydraulicRadius = A0./WettedPerimeter;
+R0 = HydraulicRadius*2;
+str_nozzle = {'0.4x0.4 square', 'eq.Area 2 circular', ...
+              'eq.Area 2w square', '0.2x0.4 square'};
+% ÀíÂÛÈ¼¾¡»ğÑæ³¤¶Èx
+x = X*R0./a;
+%% Êä³ö
 prompt = 'Theoretical lengths of flame for varied nozzles with the same cross-section area are respectively listed as';
 fprintf('%s \n', prompt);
-output = table(L, x, 'RowNames', str_nozzle)
+output = table(R0, x, 'RowNames', str_nozzle);
+disp(output)
 fprintf('It indicates that the larger influent size of nozzle has the longer flame. \n')
