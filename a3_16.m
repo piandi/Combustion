@@ -3,6 +3,7 @@
 % by Dr. GUAN Guoqiang @ SCUT on 2019-10-18
 %
 %% 初始化
+clear
 syms c_tmp;
 % 定义剩余温度或浓度函数
 d = @(x,x0)(x-x0);
@@ -27,4 +28,4 @@ end
 LocNotation = {'a';'b';'c';'d';'e'};
 output = table(T, c, 'RowNames', LocNotation);
 output.Properties.VariableUnits = {'K','kg/kg'};
-output
+disp(output)
